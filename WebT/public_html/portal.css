@@ -1,7 +1,7 @@
 body{
     margin:0;
     padding:0;
-    background-color:grey;
+    background-color:white;
 }
 a {
     text-decoration:none;
@@ -10,7 +10,8 @@ a {
 
 header#main{
     text-align:right;
-    margin:5px 10px 5px 0px;
+    margin:0px 10px 5px 0px;
+    padding:0;
 }
 
 nav#main-menu  {
@@ -22,14 +23,11 @@ nav#main-menu  {
 nav#main-menu ul {
     text-align: center;
     width:100%;
-    margin: 0px 0 20px 0;
+    margin: 0px 0 5px 0;
     padding: .4em;
     float: left;
     list-style: none;
-    background: rgba(0,0,0,.2);
-    -moz-box-shadow: 0 1px 0 rgba(255,255,255,.2), 0 2px 1px rgba(0,0,0,.8) inset;
-    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.2), 0 2px 1px rgba(0,0,0,.8) inset;
-    box-shadow: 0 1px 0 rgba(255,255,255,.2), 0 2px 1px rgba(0,0,0,.8) inset;
+    background-color:black;
 }
 
 nav#main-menu li {
@@ -47,11 +45,6 @@ nav#main-menu a {
     border-style: solid;
     border-color: #fff #ccc #999 #eee;
     background: #c1c1c1;
-    background: -moz-linear-gradient(#f5f5f5, #c1c1c1);
-    background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#c1c1c1));
-    background: -webkit-linear-gradient(#f5f5f5, #c1c1c1);
-    background: -o-linear-gradient(#f5f5f5, #c1c1c1);
-    background: -ms-linear-gradient(#f5f5f5, #c1c1c1);
     background: linear-gradient(#f5f5f5, #c1c1c1);
 }
 
@@ -60,11 +53,6 @@ nav#main-menu a:hover, nav a:focus {
     color: #fff;
     text-shadow: 0 1px 0 rgba(0,0,0,.2);
     background: red;
-    background: -moz-linear-gradient(red, crimson);
-    background: -webkit-gradient(linear, left top, left bottom, from(red), to(crimson));
-    background: -webkit-linear-gradient(red, crimson);
-    background: -o-linear-gradient(red, crimson);
-    background: -ms-linear-gradient(red, crimson);
     background: linear-gradient(red, crimson);
 }
 
@@ -88,7 +76,17 @@ nav#main-menu li:last-child a {
     border-radius: 0 4px 4px 0;
 }
 
+nav#secondar-menu {
+    float:left;
+    border-right: 1px solid grey;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding:5px;
+    margin-right: 10px;
+}
+
 section#content{
+
     padding-left:160px;
     height:100%;
 }
@@ -99,18 +97,23 @@ article.news {
 
 }
 
-div.floatingImage  {
+figure.floatingImage  {
+    width:150px;
     float:left;
     padding:5px;
     border:1px solid gray;
-    margin: 5px 20px 5px 0px;
 }
 
-div.floatingImage img {
+figure.floatingImage img {
     width:150px;
+}
+figure.floatingImage figcaption {
+    font-size: 0.5em;
 }
 
 article.news p {
+    float:right;
+    width:355px;
     margin-top:0px;
     margin-bottom:0px;
     font-size:0.8em;
@@ -125,11 +128,20 @@ article.news h1 {
     margin:0;
 }
 
-#company{
-    font-size:2em;
-    text-align:right;
+div#company{
+    width:200px;
+    font-size:0.7em;
     font-weight:bold;
     color:black;
+}
+div#company img{
+    width:40px;
+    text-align: center;
+}
+
+div#company div{
+    width:100px;
+    text-align: center;
 }
 
 footer#copyright{
@@ -140,4 +152,8 @@ footer#copyright{
     text-align:center;
     background-color:black;
     color:white;
+}
+
+.clear-both {
+    clear:both;
 }
