@@ -12,11 +12,9 @@ table{
 
 .bordered {
     border: solid #ccc 1px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+
     border-radius: 6px;
-    -webkit-box-shadow: 0 1px 1px #ccc;
-    -moz-box-shadow: 0 1px 1px #ccc;
+
     box-shadow: 0 1px 1px #ccc;
 }
 

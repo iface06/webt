@@ -112,8 +112,7 @@ figure.floatingImage figcaption {
 }
 
 article.news p {
-    float:right;
-    width:355px;
+    float:left;
     margin-top:0px;
     margin-bottom:0px;
     font-size:0.8em;
@@ -157,3 +156,7 @@ footer#copyright{
 .clear-both {
     clear:both;
 }
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
