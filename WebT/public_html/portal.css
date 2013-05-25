@@ -1,11 +1,23 @@
 body{
     margin:0;
     padding:0;
+    background-color:grey;
+    font:Helvetica;
+}
+
+div#white-area {
     background-color:white;
 }
+
 a {
     text-decoration:none;
     color:black;
+}
+
+#app-container{
+    background-color:white;
+    width: 1000px;
+    margin:auto;
 }
 
 header#main{
@@ -19,19 +31,15 @@ header#pageHeader{
 }
 
 nav#main-menu  {
-    display: block;
-    width: 100%;
-    overflow: hidden;
 }
 
 nav#main-menu ul {
-    text-align: center;
+    background-color:#333;
     width:100%;
     margin: 0px 0 5px 0;
     padding: .4em;
     float: left;
     list-style: none;
-    background-color:black;
 }
 
 nav#main-menu li {
@@ -43,7 +51,7 @@ nav#main-menu a {
     padding: .8em 1.5em;
     text-decoration: none;
     color: #333;
-    font: bold 0.7em sans-serif;
+    font: bold 0.7em Helvetica;
     letter-spacing: 1px;
     border-width: 1px;
     border-style: solid;
@@ -75,71 +83,45 @@ nav#main-menu li:last-child a {
 }
 
 nav#secondar-menu {
+    margin:auto;
+}
+
+nav#secondar-menu ul{
+    padding: .4em;
+    float: left;
+    list-style: none;
+}
+nav#secondar-menu li{
     float:left;
-    border: 2px solid grey;
-    border-radius: 6px 6px 6px 6px;
-    padding:5px;
-    margin-right: 10px;
-    margin-left: 10px;
 }
 
-section#content{
-
-    padding-left:160px;
-    height:100%;
-}
-
-article.news {
-    background-color:white;
-    width: 50%;
-
-}
-
-figure.floatingImage  {
-    width:150px;
+nav#secondar-menu a{
     float:left;
-    padding:5px;
-    border:1px solid gray;
+    padding: .8em 1.5em;
+    text-decoration: none;
+    color: #333;
+    font: bold 0.7em Helvetica;
+    letter-spacing: 1px;
 }
 
-figure.floatingImage img {
-    width:150px;
-}
-figure.floatingImage figcaption {
-    font-size: 0.5em;
+section#content-news{
+    margin-top: 50px;
 }
 
-article.news p {
-    float:left;
-    margin-top:0px;
-    margin-bottom:0px;
-    font-size:0.8em;
-    font-style:italic;
-    padding-top:5px;
+div#breadcrumb {
+    margin-bottom: 20px;
 }
 
-article.news h1 {
-    font-size:1.1em;
-    font-weight:bold;
-    padding:0;
-    margin:0;
-}
 
 div#company{
-    text-align: center;
-    width:200px;
+    text-align: right;
+    width: 100%;
     font-size:0.7em;
     font-weight:bold;
     color:black;
 }
 div#company img{
     width:40px;
-    text-align: center;
-
-}
-
-div#company div{
-    text-align: center;
 }
 
 footer#copyright{
@@ -148,7 +130,7 @@ footer#copyright{
     font-size:0.7em;
     font-family:cursiv;
     text-align:center;
-    background-color:black;
+    background-color:#333;
     color:white;
 }
 
