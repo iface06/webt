@@ -110,6 +110,8 @@ section#content-news{
 
 div#breadcrumb {
     margin-bottom: 20px;
+    border-bottom: 1px solid grey;
+    font-size:0.7em;
 }
 
 

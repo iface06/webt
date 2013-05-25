@@ -2,25 +2,26 @@ table{
     border-spacing: 0px;
 }
 
-.bordered {
+.table {
     border: solid #ccc 1px;
     border-radius: 6px;
     box-shadow: 0 1px 1px #ccc;
+    margin:auto;
 }
 
-.bordered tr:hover {
+.table tr:hover {
     background: red;
     transition: all 0.1s ease-in-out;
 }
 
-.bordered td, .bordered th {
+.table td, .table th {
     border-left: 1px solid #ccc;
     border-top: 1px solid #ccc;
     padding: 10px;
     text-align: left;
 }
 
-.bordered th {
+.table th {
     background-color: #eee;
     background: linear-gradient(#c1c1c1, #eee);
     box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
@@ -28,27 +29,27 @@ table{
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 
-.bordered td:first-child, .bordered th:first-child {
+.table td:first-child, .table th:first-child {
     border-left: none;
 }
 
-.bordered th:first-child {
+.table th:first-child {
     border-radius: 6px 0 0 0;
 }
 
-.bordered th:last-child {
+.table th:last-child {
     border-radius: 0 6px 0 0;
 }
 
-.bordered th:only-child{
+.table th:only-child{
     border-radius: 6px 6px 0 0;
 }
 
-.bordered tr:last-child td:first-child {
+.table tr:last-child td:first-child {
     border-radius: 0 0 0 6px;
 }
 
-.bordered tr:last-child td:last-child {
+.table tr:last-child td:last-child {
     border-radius: 0 0 6px 0;
 }
 
