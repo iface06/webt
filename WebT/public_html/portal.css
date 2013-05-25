@@ -14,6 +14,10 @@ header#main{
     padding:0;
 }
 
+header#pageHeader{
+
+}
+
 nav#main-menu  {
     display: block;
     width: 100%;
@@ -57,32 +61,26 @@ nav#main-menu a:hover, nav a:focus {
 }
 
 nav#main-menu a:active {
-    -moz-box-shadow: 0 0 2px 2px rgba(0,0,0,.3) inset;
-    -webkit-box-shadow: 0 0 2px 2px rgba(0,0,0,.3) inset;
     box-shadow: 0 0 2px 2px rgba(0,0,0,.3) inset;
 }
 
 nav#main-menu li:first-child a {
     border-left: 0;
-    -moz-border-radius: 4px 0 0 4px;
-    -webkit-border-radius: 4px 0 0 4px;
     border-radius: 4px 0 0 4px;
 }
 
 nav#main-menu li:last-child a {
     border-right: 0;
-    -moz-border-radius: 0 4px 4px 0;
-    -webkit-border-radius: 0 4px 4px 0;
     border-radius: 0 4px 4px 0;
 }
 
 nav#secondar-menu {
     float:left;
-    border-right: 1px solid grey;
-    border-top: 1px solid grey;
-    border-bottom: 1px solid grey;
+    border: 2px solid grey;
+    border-radius: 6px 6px 6px 6px;
     padding:5px;
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 section#content{
@@ -129,6 +127,7 @@ article.news h1 {
 }
 
 div#company{
+    text-align: center;
     width:200px;
     font-size:0.7em;
     font-weight:bold;
@@ -137,10 +136,10 @@ div#company{
 div#company img{
     width:40px;
     text-align: center;
+
 }
 
 div#company div{
-    width:100px;
     text-align: center;
 }
 

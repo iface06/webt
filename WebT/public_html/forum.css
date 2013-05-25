@@ -1,10 +1,3 @@
-/*
-    Document   : forum
-    Created on : May 16, 2013, 7:26:41 PM
-    Author     : iface06
-    Description:
-        Purpose of the stylesheet follows.
-*/
 
 table{
     border-spacing: 0px;
@@ -12,20 +5,13 @@ table{
 
 .bordered {
     border: solid #ccc 1px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
     border-radius: 6px;
-    -webkit-box-shadow: 0 1px 1px #ccc;
-    -moz-box-shadow: 0 1px 1px #ccc;
     box-shadow: 0 1px 1px #ccc;
 }
 
 .bordered tr:hover {
     background: red;
-    -o-transition: all 0.1s ease-in-out;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    -ms-transition: all 0.1s ease-in-out;
+
     transition: all 0.1s ease-in-out;
 }
 
@@ -44,8 +30,6 @@ table{
     background-image:     -ms-linear-gradient(top, #c1c1c1, #eee);
     background-image:      -o-linear-gradient(top, #c1c1c1, #eee);
     background-image:         linear-gradient(top, #c1c1c1, #eee);
-    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
-    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
     box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
     border-top: none;
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
@@ -56,31 +40,21 @@ table{
 }
 
 .bordered th:first-child {
-    -moz-border-radius: 6px 0 0 0;
-    -webkit-border-radius: 6px 0 0 0;
     border-radius: 6px 0 0 0;
 }
 
 .bordered th:last-child {
-    -moz-border-radius: 0 6px 0 0;
-    -webkit-border-radius: 0 6px 0 0;
     border-radius: 0 6px 0 0;
 }
 
 .bordered th:only-child{
-    -moz-border-radius: 6px 6px 0 0;
-    -webkit-border-radius: 6px 6px 0 0;
     border-radius: 6px 6px 0 0;
 }
 
 .bordered tr:last-child td:first-child {
-    -moz-border-radius: 0 0 0 6px;
-    -webkit-border-radius: 0 0 0 6px;
     border-radius: 0 0 0 6px;
 }
 
 .bordered tr:last-child td:last-child {
-    -moz-border-radius: 0 0 6px 0;
-    -webkit-border-radius: 0 0 6px 0;
     border-radius: 0 0 6px 0;
 }
