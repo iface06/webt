@@ -116,11 +116,10 @@ div#breadcrumb {
 
 
 div#company{
-    text-align: right;
-    width: 100%;
     font-size:0.7em;
     font-weight:bold;
     color:black;
+    margin:auto;
 }
 div#company img{
     width:40px;
