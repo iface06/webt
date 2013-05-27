@@ -14,6 +14,10 @@ a {
     color:black;
 }
 
+a:hover {
+    color:red;
+}
+
 #app-container{
     background-color:white;
     width: 1000px;
@@ -137,13 +141,16 @@ div#company img{
 }
 
 footer#copyright{
-    clear:both;
     width:100%;
     font-size:0.7em;
     font-family:cursiv;
     text-align:center;
     background-color:#333;
     padding: 5px 0px;
+    color:white;
+}
+
+footer#copyright a {
     color:white;
 }
 
