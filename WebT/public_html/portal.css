@@ -154,6 +154,10 @@ footer#copyright a {
     color:white;
 }
 
+footer#copyright a:hover {
+    color:red;
+}
+
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 
