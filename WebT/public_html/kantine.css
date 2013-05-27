@@ -1,3 +1,4 @@
+
 table{
     border-spacing: 0px;
 }
@@ -53,3 +54,6 @@ table{
     border-radius: 0 0 6px 0;
 }
 
+div#kantine-oeffnungszeiten ul{
+    list-style: none;
+}
