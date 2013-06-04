@@ -142,3 +142,9 @@ footer#copyright{
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 .clearfix { *zoom: 1; }
+
+.error-message{
+    color:red;
+    font-weight: bold;
+    font-size: 14px;
+}
