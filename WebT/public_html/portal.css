@@ -1,8 +1,8 @@
 body{
     margin:0;
     padding:0;
-    background-color:grey;
-    font:Helvetica;
+    background-color:#c1c1c1;
+    font-family: Arial, Helvetica;
 }
 
 div#white-area {
@@ -14,6 +14,10 @@ a {
     color:black;
 }
 
+a:hover {
+    color:red;
+}
+
 #app-container{
     background-color:white;
     width: 1000px;
@@ -22,12 +26,18 @@ a {
 
 header#main{
     text-align:right;
-    margin:0px 10px 5px 0px;
+    margin:0px 10px 0px 0px;
     padding:0;
 }
 
-header#pageHeader{
 
+header#pageHeader h1{
+    padding: 0;
+    margin:0;
+}
+header#pageHeader p {
+    padding: 0;
+    margin:0;
 }
 
 nav#main-menu  {
@@ -83,16 +93,21 @@ nav#main-menu li:last-child a {
 }
 
 nav#secondar-menu {
-    margin:auto;
+    margin:20px auto;
+    width:70%;
 }
 
 nav#secondar-menu ul{
+    display: inline;
     padding: .4em;
-    float: left;
     list-style: none;
 }
 nav#secondar-menu li{
     float:left;
+}
+
+nav#secondar-menu a:hover, nav, a:active {
+    color: red;
 }
 
 nav#secondar-menu a{
@@ -119,32 +134,30 @@ div#company{
     font-size:0.7em;
     font-weight:bold;
     color:black;
-    margin:auto;
+    padding: 10px 5px 0 0;
 }
 div#company img{
     width:40px;
 }
 
 footer#copyright{
-    clear:both;
     width:100%;
     font-size:0.7em;
     font-family:cursiv;
     text-align:center;
     background-color:#333;
+    padding: 5px 0px;
     color:white;
 }
 
-.clear-both {
-    clear:both;
+footer#copyright a {
+    color:white;
+}
+
+footer#copyright a:hover {
+    color:red;
 }
 
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
-.clearfix { *zoom: 1; }
 
-.error-message{
-    color:red;
-    font-weight: bold;
-    font-size: 14px;
-}
