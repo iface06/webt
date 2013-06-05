@@ -31,18 +31,19 @@
             <div id="app-container">
                 <h1>Chartz Creator</h1>
                 <p>Erstelle Säulendiagramm...</p>
-                <form>
-                    <div id="chart-data-form">
+                <form id="chartzForm">
+                    <div id="inputFields">
                         <div>
                             <label>Säule 1:</label>
                             <input type="text" name="columnName">
                             <input type="text" name="columnValue">
                         </div>
                         <div id="add-column-button">
-                            <input type="button" onclick="" value="weitere Säule">
+                            <input type="button" onclick="WEBT.chartzCreator.addInputField()" value="weitere Säule">
                         </div>
                     </div>
                 </form>
+                <canvas id="barChart"></canvas>
 
             </div>
         </div>
