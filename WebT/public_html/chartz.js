@@ -23,6 +23,28 @@ WEBT.Bar = function(name, value){
     this.value = value;
 };
 
+WEBT.Bars = function(){
+    this.bars = new Array();
+    
+    this.calculateMaxBarValue = function(){
+        var max = 0;
+        for(var i = 0; i < bars. length; i++){
+            if(bars[i] > max) {
+                max = bars[i];
+            }
+        }
+        return max;
+    };
+    
+    this.put = function(){
+        
+    }
+    
+    this.getNumberOfBars = function(){
+        return bars.length;
+    };
+};
+
 WEBT.chartzCreator = (function() {
     var numberOfColumns = 1;
     window.onload = function() {
@@ -70,14 +92,14 @@ WEBT.chartzCreator = (function() {
     };
 
     var readBarData = function() {
-        var barData = new Array();
+        var bars = new Bars();
         var divs = document.getElementsByClassName('bar-data');
         for(var i = 0; i < divs.length; i++) {
             var barDiv = divs[i];
             var barValue = barDiv.getElementsByClassName('bar-value')[0].value;
             var barName = barDiv.getElementsByClassName('bar-name')[0].value;
             var bar = new WEBT.Bar(barName, barValue);
-            barData.push(bar);
+            bars.push(bar);
         }
     };
 
