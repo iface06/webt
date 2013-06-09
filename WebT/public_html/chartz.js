@@ -50,7 +50,8 @@ WEBT.Bars = function(){
     };
 };
 
-WEBT.BarChart = function(bars, context){
+WEBT.BarChart = function(barTitle, bars, context){
+	this.barTitle = barTitle;
 	this.width = context.canvas.width;
 	this.height = context.canvas.height;
 	this.paddingArroundCanvas = 5;
@@ -60,7 +61,8 @@ WEBT.BarChart = function(bars, context){
 	var bars = bars;
 	var xLabelHeight = 25;
 	var yLabelHeight = 25;
-	var reservedHeightPerBar = this.height - this.paddingArroundCanvas;
+	var barCharTitleHeight = 25;
+	var reservedHeightPerBar = this.height - this.paddingArroundCanvas - barCharTitleHeight - yLabelHeight - xLabelHeight
 	var reservedWidthPerBar = (this.width / bars.getNumberOfBars());
 	var ratio = 0;
 	var maxBarValue = 0;
@@ -68,27 +70,50 @@ WEBT.BarChart = function(bars, context){
 	
 	this.draw = function(){
 		maxBarValue = bars.calculateMaxBarValue();
+		this.drawTitle();
 		for(var i = 0; i < bars.getNumberOfBars(); i++){
+			this.drawYlabel(i);
 			this.drawBar(i);
 			this.drawXlabel(i);
-			
 		}
 	};
+	
+	this.drawTitle = function(){
+		canvasContext.font = "bold 20px sans-serif";
+		canvasContext.textAlign = "center"
+		canvasContext.fillStyle = 'black';
+		canvasContext.fillText(barTitle, this.width / 2, barCharTitleHeight);
+	};
+	
+	this.drawYlabel = function(i){
+		var bar = bars.get(i);
+		canvasContext.fillStyle = 'black';
+		canvasContext.font = "12px sans-serif";
+		canvasContext.textAlign = "center";
+		var ratio = bar.value / maxBarValue;
+		var barHeight = reservedHeightPerBar * ratio;
+		var upperLeftCornerY = this.height - barHeight;
+		canvasContext.fillText(bar.value, i * reservedWidthPerBar + reservedWidthPerBar / 2, upperLeftCornerY);
+
+	}
 
 	this.drawBar = function(i){
 		var bar = bars.get(i);
-		var ratio = bar.value / maxBarValue;
-		var barHeight = (reservedHeightPerBar - yLabelHeight) * ratio;
 		var space = this.spaceBetweenBars;
 		canvasContext.fillStyle = this.barColors[i % this.barColors.length];
 		var upperLeftCornerX = reservedWidthPerBar * i  + this.paddingArroundCanvas;
-		var upperLeftCornerY = this.height - barHeight;
-		canvasContext.fillRect(upperLeftCornerX, upperLeftCornerY, reservedWidthPerBar - space, barHeight - xLabelHeight); 
+		var ratio = bar.value / maxBarValue;
+		var barHeight = height * ratio;
+		var upperLeftCornerY = reservedHeightPerBar - barHeight;
+		canvasContext.fillRect(upperLeftCornerX, upperLeftCornerY, reservedWidthPerBar - space, barHeight); 
 	};
 	
 	this.drawXlabel = function(i){
 		var bar = bars.get(i);
-		canvasContext.fillText(bar.name, i * reservedWidthPerBar + reservedWidthPerBar / 2, reservedHeightPerBar);
+		canvasContext.fillStyle = 'black';
+		canvasContext.font = "12px sans-serif";
+		canvasContext.textAlign = "center";
+		canvasContext.fillText(bar.name, i * reservedWidthPerBar + reservedWidthPerBar / 2, this.height);
 	};
 };
 
@@ -101,11 +126,9 @@ WEBT.chartzCreator = (function() {
 	var createCanvasArea = function(){
 		var canvasContext = document.getElementById("barChart").getContext("2d");
         canvasContext.canvas.width = 600;
-        canvasContext.canvas.height = 200;
+        canvasContext.canvas.height = 300;
         canvasContext.fillStyle = '#eee';
         canvasContext.fillRect('0', '0', '600', '300');
-		canvasContext.font = "bold 12px sans-serif";
-		canvasContext.textAlign = "center";
 		return canvasContext;
 	};
 	
@@ -113,26 +136,37 @@ WEBT.chartzCreator = (function() {
 
         var div = createTag('div');
         div.className = 'bar-data';
-        div.appendChild(createLabel(numberOfColumns + ": "));
+		div.id = 'bar-data-' + numberOfColumns;
+		div.appendChild(createDeleteButton());
         div.appendChild(createTextInputField('barName' + numberOfColumns));
         div.appendChild(createNumberInputField('barValue' + numberOfColumns));
 
         document.getElementById('inputFields').appendChild(div);
         numberOfColumns++;
     };
-
-    var createLabel = function(text) {
-        var label = document.createElement('label');
-        label.innerHTML = text;
-        return label;
-    };
+	
+	var createDeleteButton = function(){
+		var button = document.createElement('input');
+		button.type = 'button';
+		button.value = 'löschen';
+		button.onclick = function(event){
+			deleteInputField(event.currentTarget.parentNode);
+			drawBarChart();
+		};
+		return button;
+	};
+	
+	var deleteInputField = function(barDataRow){
+		barDataRow.parentNode.removeChild(barDataRow);
+		numberOfColumns--;
+	};
 
     var createTextInputField = function(name) {
         var value = createTag('input');
         value.type = "text";
         value.name = name;
         value.className = 'bar-name';
-
+		
         return value;
     };
 
@@ -141,6 +175,12 @@ WEBT.chartzCreator = (function() {
         number.type = "number";
         number.name = name;
         number.className = 'bar-value';
+		number.onkeydown = function(event){
+			if(event.keyIdentifier === 'U+0009'){
+				drawBarChart();
+				addInputField();
+			}
+		};
 
         return number;
     };
@@ -161,9 +201,15 @@ WEBT.chartzCreator = (function() {
 	var drawBarChart = function(){
 		var bars = WEBT.chartzCreator.readBarData();
 		var context = createCanvasArea();
-		var chart = new WEBT.BarChart(bars, context);
+		var barTitle = getBarTitle();
+		var chart = new WEBT.BarChart(barTitle, bars, context);
 		chart.draw();
 	};
+	
+	var getBarTitle = function(){
+		var barChartTitleInput = document.getElementById('barChartTitle');
+		return barChartTitleInput.value;
+	}
 
     var createTag = function(tagName) {
         return document.createElement(tagName);
@@ -184,7 +230,7 @@ WEBT.chartzCreator = (function() {
     return {
         addInputField: addInputField,
         readBarData: readBarData,
-		drawBarChart: drawBarChart
+		drawBarChart: drawBarChart,
+		deleteInputField: deleteInputField
     };
 }());
-
