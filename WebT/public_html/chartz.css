@@ -1,2 +1,76 @@
+label {
+    font-weight: bold;
+}
+input {
+    font-size: 14px;
+    border: 1px solid #333;
+    padding:5px;
+}
 
+input.button{
+    padding: 5px;
+    background-color:#333;
+    color:white;
+}
+
+input.button:hover{
+    padding: 5px;
+    background-color:red;
+    color:white;
+}
+
+input.row-button{
+    
+    background-color:#333;
+    color:white;
+}
+
+input.row-button:hover{
+    
+    padding: 5px;
+    background-color:red;
+    color:white;
+}
+
+form#chartzForm {
+    margin-bottom: 20px;
+}
+
+div#inputFields {
+    margin-bottom: 10px;
+}
+
+div#inputFields input[type=number] {
+    width:100px;
+}
+
+div#inputFields input[type=text] {
+    margin-right:5px;
+    width:250px;
+}
+
+div#chart-title label {
+    margin-right: 27px;
+}
+
+div#chart-title input {
+    width: 300px;
+}
+
+div#chart-unit {
+    margin-bottom: 10px;
+}
+
+div#chart-unit input {
+    width: 25px;
+}
+
+div#chart-unit label{
+    margin-right: 6px;
+}
+
+canvas#barChart {
+    margin-bottom: 20px;
+    border: 1px solid #333;
+}
 
