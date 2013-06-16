@@ -161,3 +161,8 @@ footer#copyright a:hover {
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 
+.error-message{
+    color:red;
+    font-weight: bold;
+    font-size: 14px;
+}
