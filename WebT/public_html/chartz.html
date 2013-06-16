@@ -5,8 +5,8 @@
         <title>Angel B.I.K.E.S - Chartz</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="portal.css"/>
-        <link rel="stylesheet" type="text/css" href="chartz.css"/>
-        <script type="text/javascript" src="chartz.js">
+        <link rel="stylesheet" type="text/css" href="events.css"/>
+        <script type="text/javascript" src="events.js">
 
         </script>
     </head>
@@ -15,11 +15,11 @@
         <div id="white-area">
             <nav id="main-menu">
                 <ul>
-                    <li><a href="./chartz.html">Forum</a></li>
-                    <li><a href="./chartz.html">CRM</a></li>
-                    <li><a href="./chartz.html">ERP</a></li>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./events.html">Eventmanager</a></li>
                     <li><a href="./chartz.html">Chartz</a></li>
-                    <li><a href="./chartz.html">M. Mustermann</a></li>
+                    <li><a href="./index.html">ERP</a></li>
+                    <li><a href="./index.html">M. Mustermann</a></li>
                 </ul>
             </nav>
             <header id="main">
@@ -29,16 +29,16 @@
                 </div>
             </header>
             <div id="app-container">
-                <h1>Chartz Creator</h1>
-                <p>Zum Erstellen eines Säulendiagramm Titel eingeben, wenn gewünscht Einheit eingeben, dann Säulen hinzufügen und abschließend auf "zeichnen" klicken.</p>
-                <form id="chartzForm">
+                <h1>Event Manager</h1>
+                <p>Hier werden die Events verwaltet...</p>
+                <form id="eventsForm">
                     <div id="chart-title">
                         <label>Titel:</label><input type="text" name="barChartTitle" id="barTitle" placeholder="Diagrammname">
                     </div>
                     <div id="chart-unit">
                         <label>Einheit:</label><input type="text" name="barUnit" id="barUnit" placeholder="€;%">
                     </div>
-                        
+
                     <div id="inputFields"></div>
                     <div id="add-column-button">
                         <input type="button" class="button" onclick="WEBT.chartzCreator.addInputField()" value="Säule hinzufügen">

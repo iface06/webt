@@ -4,33 +4,71 @@
     <head>
         <title>Angel B.I.K.E.S - Chartz</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="portal.css"/>
-        <link rel="stylesheet" type="text/css" href="chartz.css"/>
-        <script type="text/javascript" src="chartz.js">
+        <link rel="stylesheet" type="text/css" href="./css/portal.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/events.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/black-tie/jquery-ui.css"/>
+        <script type="text/javascript" src="./js/jquery.js"></script>
+        <script type="text/javascript" src="./js/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("#login-dialog").dialog({
+                    autoOpen: false,
+                    height: 300,
+                    width: 350,
+                    buttons: {
+                        Login: function() {
 
-        </script>
+                        },
+                        Register: function() {
+                            $.getJSON('http://46.163.74.38/Events/ctrls/users.php', {
+                                operation: 'register',
+                                name: 'test',
+                                password: 'test'
+                            },
+                            function(data) {
+                                alert(data);
+                            });
+                        },
+                        Cancel: function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $("#login").click(function() {
+                    $("#login-dialog").dialog("open");
+                });
+
+                function registered(data) {
+                    alert(data);
+                }
+            });</script>
     </head>
     <body>
         <noscript class="error-message">Lebst du hinter dem Mond oder warum hast du kein JavaScript?</noscript>
         <div id="white-area">
-            <nav id="main-menu">
-                <ul>
-                    <li><a href="./chartz.html">Forum</a></li>
-                    <li><a href="./chartz.html">CRM</a></li>
-                    <li><a href="./chartz.html">ERP</a></li>
+            <nav id="main-menu" class="clearfix">
+
+                <ul class="clearfix">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./events.html">Eventmanager</a></li>
                     <li><a href="./chartz.html">Chartz</a></li>
-                    <li><a href="./chartz.html">M. Mustermann</a></li>
+                    <li><a href="./index.html">ERP</a></li>
+                    <li><a href="javascript:;" id="login">Login</a></li>
                 </ul>
+                <div id="login-dialog" title="Login">
+                    <input type="text" name="userName" placeholder="Username">
+                    <input type="password" name="userPassword" placeholder="Password">
+                </div>
             </nav>
             <header id="main">
                 <div id="company">
-                    <img alt="angle-bikes-logo" src="./angel-wing.jpg"/>
+                    <img alt="angle-bikes-logo" src="./img/angel-wing.jpg"/>
                     <div>Angel B.I.K.E.S</div>
                 </div>
             </header>
             <div id="app-container">
-                <h1>Chartz Creator</h1>
-                <p>Zum Erstellen eines Säulendiagramm Titel eingeben, wenn gewünscht Einheit eingeben, dann Säulen hinzufügen und abschließend auf "zeichnen" klicken.</p>
+                <h1>Event Manager</h1>
+                <p>Organisiere deine Events...</p>
                 <form id="chartzForm">
                     <div id="chart-title">
                         <label>Titel:</label><input type="text" name="barChartTitle" id="barTitle" placeholder="Diagrammname">
@@ -38,7 +76,7 @@
                     <div id="chart-unit">
                         <label>Einheit:</label><input type="text" name="barUnit" id="barUnit" placeholder="€;%">
                     </div>
-                        
+
                     <div id="inputFields"></div>
                     <div id="add-column-button">
                         <input type="button" class="button" onclick="WEBT.chartzCreator.addInputField()" value="Säule hinzufügen">

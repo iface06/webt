@@ -3,6 +3,7 @@ body{
     padding:0;
     background-color:#c1c1c1;
     font-family: Arial, Helvetica;
+    color:#333;
 }
 
 div#white-area {
@@ -41,14 +42,14 @@ header#pageHeader p {
 }
 
 nav#main-menu  {
+    font: bold 0.7em Helvetica;
+    background-color:#333;
 }
 
 nav#main-menu ul {
-    background-color:#333;
-    width:100%;
-    margin: 0px 0 5px 0;
+    width: 1000px;
+    margin:auto;
     padding: .4em;
-    float: left;
     list-style: none;
 }
 
@@ -61,21 +62,17 @@ nav#main-menu a {
     padding: .8em 1.5em;
     text-decoration: none;
     color: #333;
-    font: bold 0.7em Helvetica;
+
     letter-spacing: 1px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #fff #ccc #999 #eee;
+
+    border-right: 1px solid #eee;
     background: #c1c1c1;
-    background: linear-gradient(#f5f5f5, #c1c1c1);
 }
 
 nav#main-menu a:hover, nav a:focus {
     outline: 0;
     color: #fff;
-    text-shadow: 0 1px 0 rgba(0,0,0,.2);
     background: red;
-    background: linear-gradient(red, crimson);
 }
 
 nav#main-menu a:active {
@@ -84,12 +81,14 @@ nav#main-menu a:active {
 
 nav#main-menu li:first-child a {
     border-left: 0;
-    border-radius: 4px 0 0 4px;
 }
 
 nav#main-menu li:last-child a {
     border-right: 0;
-    border-radius: 0 4px 4px 0;
+}
+
+div#login-form{
+
 }
 
 nav#secondar-menu {
@@ -161,3 +160,8 @@ footer#copyright a:hover {
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 
+.error-message{
+    color:red;
+    font-weight: bold;
+    font-size: 14px;
+}
