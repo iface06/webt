@@ -6,42 +6,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="./css/portal.css"/>
         <link rel="stylesheet" type="text/css" href="./css/events.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/black-tie/jquery-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/jquery-ui-1.10.3.custom.css"/>
         <script type="text/javascript" src="./js/jquery.js"></script>
         <script type="text/javascript" src="./js/jquery-ui.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                $("#login-dialog").dialog({
-                    autoOpen: false,
-                    height: 300,
-                    width: 350,
-                    buttons: {
-                        Login: function() {
-
-                        },
-                        Register: function() {
-                            $.getJSON('http://46.163.74.38/Events/ctrls/users.php', {
-                                operation: 'register',
-                                name: 'test',
-                                password: 'test'
-                            },
-                            function(data) {
-                                alert(data);
-                            });
-                        },
-                        Cancel: function() {
-                            $(this).dialog("close");
-                        }
-                    }
-                });
-                $("#login").click(function() {
-                    $("#login-dialog").dialog("open");
-                });
-
-                function registered(data) {
-                    alert(data);
-                }
-            });</script>
+        <script type="text/javascript" src="./js/events.js"></script>
+        
     </head>
     <body>
         <noscript class="error-message">Lebst du hinter dem Mond oder warum hast du kein JavaScript?</noscript>
@@ -53,12 +22,8 @@
                     <li><a href="./events.html">Eventmanager</a></li>
                     <li><a href="./chartz.html">Chartz</a></li>
                     <li><a href="./index.html">ERP</a></li>
-                    <li><a href="javascript:;" id="login">Login</a></li>
+                    <li><a href="javascript:;" id="logout-button">Logout</a></li>
                 </ul>
-                <div id="login-dialog" title="Login">
-                    <input type="text" name="userName" placeholder="Username">
-                    <input type="password" name="userPassword" placeholder="Password">
-                </div>
             </nav>
             <header id="main">
                 <div id="company">
@@ -67,24 +32,20 @@
                 </div>
             </header>
             <div id="app-container">
-                <h1>Event Manager</h1>
-                <p>Organisiere deine Events...</p>
-                <form id="chartzForm">
-                    <div id="chart-title">
-                        <label>Titel:</label><input type="text" name="barChartTitle" id="barTitle" placeholder="Diagrammname">
+                <div id="event-manager" style="display: none">    
+                    <h1>Event Manager</h1>
+                    <p>Organisiere deine Events...</p>
+                </div>
+                <div id="event">
+                    
+                </div>
+                <div id="login" title="Login" style="display: none">
+                    <input type="text" id="username" name="userName" placeholder="Username">
+                    <input type="password" id="password" name="userPassword" placeholder="Password">
+                    <div id="login-buttons">
+                        <input type="button" id="login-button" class="button" value="Login">
                     </div>
-                    <div id="chart-unit">
-                        <label>Einheit:</label><input type="text" name="barUnit" id="barUnit" placeholder="€;%">
-                    </div>
-
-                    <div id="inputFields"></div>
-                    <div id="add-column-button">
-                        <input type="button" class="button" onclick="WEBT.chartzCreator.addInputField()" value="Säule hinzufügen">
-                        <input type="button" class="button" onclick="WEBT.chartzCreator.drawBarChart()" value="zeichnen">
-                        <input type="button" class="button" onclick="WEBT.chartzCreator.reset()" value="zurücksetzen">
-                    </div>
-                </form>
-                <canvas id="barChart"></canvas>
+                </div>
             </div>
         </div>
         <footer id="copyright">Copyright: Angel B.I.K.E.S</footer>
