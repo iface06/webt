@@ -10,7 +10,7 @@
         <script type="text/javascript" src="./js/jquery.js"></script>
         <script type="text/javascript" src="./js/jquery-ui.js"></script>
         <script type="text/javascript" src="./js/events.js"></script>
-        
+
     </head>
     <body>
         <noscript class="error-message">Lebst du hinter dem Mond oder warum hast du kein JavaScript?</noscript>
@@ -32,18 +32,67 @@
                 </div>
             </header>
             <div id="app-container">
-                <div id="event-manager" style="display: none">    
-                    <h1>Event Manager</h1>
-                    <p>Organisiere deine Events...</p>
+                <h1>Event Manager</h1>
+                <p>Organisiere deine Events...</p>
+                <div id="events" style="display: none">
+                    <table id="events-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Datum</th>
+                                <th>Titel</th>
+                                <th>Beschreibung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
+                    <div id="events-button-row">
+                        <input type="button" id="create-event-button" class="button" value="Event hinzufügen">
+                        <input type="button" id="store-events-button" class="button" value="Speichern">
+                        <input type="button" id="cancel-events-button" class="button" value="Abbrechen">
+                    </div>
                 </div>
-                <div id="event">
-                    
+                <div id="create-event-dialog">
+                    <div class="event-field">
+                        <label>Datum: </label><input type="text" name="eventDate" id="event-date" placeholder="YYYY-MM-DD">
+                    </div>
+                    <div class="event-field">
+                        <label>Titel: </label><input type="text" name="eventTitle" id="event-title">
+                    </div>
+                    <div class="event-field">
+                        <label>Beschreibung: </label><textarea name="eventDescription" id="event-description"></textarea>
+                    </div>
+                    <div id="event-field-participations" class="event-field">
+                        <label>Teilnehmer:</label>
+                        <ul id="event-participations">
+                        </ul>
+                    </div>
+                </div>
+                <div id="view-event-dialog" >
+                    <div class="event-field">
+                        <label>Datum: </label><span id="event-date-view"></span>
+                    </div>
+                    <div class="event-field">
+                        <label>Titel: </label><span id="event-title-view"></span>
+                    </div>
+                    <div class="event-field">
+                        <label>Beschreibung: </label><div id="event-description-view"></div>
+                    </div>
+                    <div id="event-field-participations" class="event-field-view">
+                        <label>Teilnehmer:</label>
+                        <ul id="view-event-participations">
+                        </ul>
+                    </div>
                 </div>
                 <div id="login" title="Login" style="display: none">
                     <input type="text" id="username" name="userName" placeholder="Username">
                     <input type="password" id="password" name="userPassword" placeholder="Password">
                     <div id="login-buttons">
                         <input type="button" id="login-button" class="button" value="Login">
+                        <input type="button" id="register-button" class="button" value="Registrieren">
                     </div>
                 </div>
             </div>
