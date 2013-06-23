@@ -32,6 +32,13 @@
                 </div>
             </header>
             <div id="app-container">
+                <div id="error"class="ui-state-error" style="display:none">
+                    <p>
+                        <span class="ui-icon ui-icon-alert alert-icon" ></span>
+                        <strong>Fehler: </strong>
+                        <span id="error-message"></span>
+                    </p>
+                </div>
                 <h1>Event Manager</h1>
                 <p>Organisiere deine Events...</p>
                 <div id="events" style="display: none">
@@ -72,6 +79,7 @@
                     </div>
                 </div>
                 <div id="view-event-dialog" >
+                    <input type="hidden" id="event-eid" name="eventEid">
                     <div class="event-field">
                         <label>Datum: </label><span id="event-date-view"></span>
                     </div>

@@ -1,3 +1,13 @@
+span.alert-icon {
+    float:left;
+    margin-right:5px;
+}
+
+.open {
+    background: #fff;
+    border:none;
+}
+
 label {
     font-weight: bold;
 }

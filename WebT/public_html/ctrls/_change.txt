@@ -1,0 +1,16 @@
+-----------------------------------------------------
+tasks.php
+-----------------------------------------------------
+
+todo: line 16: 'false' --> false
+
+line 32: if(isset($_pid['eid'])) { --> if(isset($_eid['eid'])) {
+line 79: $_freeSlots = $result->fetch_assoc() --> $_freeSlots = $result->fetch_assoc(); 
+
+-----------------------------------------------------
+users.php
+-----------------------------------------------------
+
+todo: line 13: 'false' --> false
+
+

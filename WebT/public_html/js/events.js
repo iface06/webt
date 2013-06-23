@@ -8,6 +8,7 @@ WEBT.singlePage = (function() {
         $('#register-button').click(register);
         $('#login-button').click(login);
         $('#logout-button').click(logout);
+        $('#store-events-button').click(storeEvents);
         $('#create-event-button').click(createNewEvent);
         $('#create-event-dialog').dialog({
             autoOpen: false,
@@ -42,8 +43,10 @@ WEBT.singlePage = (function() {
                     $(this).dialog('close');
                 },
                 'Teilnehmen': function() {
+                    joinToEvent();
                     $(this).dialog('close');
-                }}
+                }
+            }
         });
         updateView();
     });
@@ -60,32 +63,98 @@ WEBT.singlePage = (function() {
             $('#login').css('display', 'block');
         }
     };
-
+    var setError = function(errorMessage) {
+        $('#error-message').html(errorMessage);
+        $('#error').css('display', 'block');
+    };
+    var resetError = function() {
+        $('#error-message').html('');
+        $('#error').css('display', 'none');
+    };
     var register = function() {
         var user = createUserFromLoginForm();
-        WEBT.webStorage.register(user, login);
+        WEBT.webStorage.register(user, loginAfterSuccessfulRegistration);
     };
-
+    var loginAfterSuccessfulRegistration = function(result) {
+        if (result.error === 'false') {
+            var user = createUserFromLoginForm();
+            WEBT.webStorage.login(user, finishLogin);
+        } else {
+            setError(result.msg);
+        }
+    };
     var login = function() {
-        WEBT.localStorage.storeUser(createUserFromLoginForm());
-        resetUserLoginForm();
-        updateView();
+        var user = createUserFromLoginForm();
+        WEBT.webStorage.login(user, finishLogin);
     };
-
+    var finishLogin = function(result) {
+        if (result.error === 'false') {
+            var user = createUserFromLoginForm();
+            WEBT.localStorage.storeUser(user);
+            resetUserLoginForm();
+            reloadEvents();
+            updateView();
+        } else {
+            setError(result.msg);
+        }
+    };
+    var reloadEvents = function() {
+        WEBT.webStorage.listEvents(function(result) {
+            if (result.error === 'false') {
+                $.each(result.events, function(i) {
+                    var event = this;
+                    event.participations = new Array();
+                    WEBT.webStorage.listUsersOfEvent(this, function(result) {
+                        if (result.error === 'false') {
+                            $.each(result.users, function(i) {
+                                event.participations[i] = this;
+                            });
+                        } else {
+                            setError(result.msg);
+                        }
+                    });
+                });
+                WEBT.localStorage.storeEvents(result.events);
+                updateView();
+            } else {
+                setError(result.msg);
+            }
+        });
+    };
+    var storeEvents = function() {
+        var events = WEBT.localStorage.loadEvents();
+        for (var i = 0; i < events.length; i++) {
+            var event = events[i];
+            WEBT.webStorage.create(events[i], function(result) {
+                if (result.error === 'true') {
+                    setError(result.msg);
+                } else {
+                    event.eid = result.eid;
+                }
+            });
+        }
+    };
     resetUserLoginForm = function() {
         $('#userName').val('');
         $('#password').val('');
-    }
+    };
     var createUserFromLoginForm = function() {
         var username = $('#username').val();
         var password = $('#password').val();
-        return new WEBT.User(username, password)
+        return new WEBT.User(username, password);
     };
-
     var logout = function() {
         localStorage.clear();
         resetEventsTable();
         updateView();
+    };
+    var join = function() {
+        var eid = $('#event-eid').val();
+        WEBT.webStorage.join(eid, function(result) {
+            if (result.error === 'false') {
+
+            }
+        });
     };
     var createNewEvent = function() {
         $('#create-event-dialog').dialog('open');
@@ -96,13 +165,17 @@ WEBT.singlePage = (function() {
         $('#event-date-view').html(event.date);
         $('#event-title-view').html(event.title);
         $('#event-description-view').html(event.description);
+        $.each(event.participations, function(i) {
+            $('#view-event-participations').append('<li>' + this.name + '</li>');
+
+        });
         $('#view-event-dialog').dialog('open');
     };
     var setEventsTable = function() {
         var events = WEBT.localStorage.loadEvents();
         var eventsTable = $('#events-table tbody');
         $.each(events, function(i) {
-            var row = "<tr><td><input type=\"button\" id=\"view-event-" + i + "\"></td><td>" + this.date + "</td><td>" + this.title + "</td><td>" + this.description + "</td></tr>";
+            var row = "<tr><td><input class=\"ui-icon ui-icon-search open\" type=\"button\" id=\"view-event-" + i + "\"></td><td>" + this.date + "</td><td>" + this.title + "</td><td>" + this.description + "</td></tr>";
             eventsTable.append(row);
             $(('#view-event-' + i)).click(viewEvent);
         });
@@ -116,20 +189,20 @@ WEBT.singlePage = (function() {
 }());
 WEBT.webStorage = (function() {
     var listEvents = function(callback) {
-        $.getJSON('http://localhost/Events/ctrls/ctrls/event.php', {
+        $.getJSON('http://localhost/Events/ctrls/events.php', {
             operation: 'list_events'
         },
         callback);
     };
     var listUsersOfEvent = function(event, callback) {
-        $.getJSON('http://localhost/Events/ctrls/ctrls/event.php', {
+        $.getJSON('http://localhost/Events/ctrls/events.php', {
             operation: 'list_users_of_event',
             eid: event.eid
         },
         callback);
     };
     var create = function(event, callback) {
-        $.getJSON('http://localhost/Events/ctrls/event.php', {
+        $.getJSON('http://localhost/Events/ctrls/events.php', {
             operation: 'create',
             title: event.title,
             description: event.description,
@@ -138,7 +211,7 @@ WEBT.webStorage = (function() {
         callback);
     };
     var register = function(user, callback) {
-        $.getJSON('http://localhost/Events/ctrls/ctrls/users.php', {
+        $.getJSON('http://localhost/Events/ctrls/users.php', {
             operation: 'register',
             name: user.name,
             password: user.password
@@ -146,15 +219,15 @@ WEBT.webStorage = (function() {
         callback);
     };
     var login = function(user, callback) {
-        $.getJSON('http://localhost/Events/ctrls/ctrls/users.php', {
+        $.getJSON('http://localhost/Events/ctrls/users.php', {
             operation: 'login',
             name: user.name,
             password: user.password
         },
         callback);
     };
-    var login = function(user, callback) {
-        $.getJSON('http://localhost/Events/ctrls/ctrls/users.php', {
+    var logout = function(user, callback) {
+        $.getJSON('http://localhost/Events/ctrls/users.php', {
             operation: 'logout'
         },
         callback);
@@ -163,6 +236,8 @@ WEBT.webStorage = (function() {
         listEvents: listEvents,
         listUsersOfEvent: listUsersOfEvent,
         create: create,
+        login: login,
+        logout: logout,
         register: register
     };
 })();
@@ -222,7 +297,7 @@ WEBT.Event = function() {
     this.description;
     this.eid;
     this.uid;
-    this.participations;
+    this.participations = new Array();
 };
 
 
