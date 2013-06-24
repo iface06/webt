@@ -3,6 +3,7 @@ body{
     padding:0;
     background-color:#c1c1c1;
     font-family: Arial, Helvetica;
+    font-size:0.9em;
     color:#333;
 }
 
@@ -43,8 +44,9 @@ header#pageHeader p {
 }
 
 nav#main-menu  {
-    font: bold 0.7em Helvetica;
+    font: bold 0.9em Helvetica;
     background-color:#333;
+    height:20px;
 }
 
 nav#main-menu ul {
@@ -112,10 +114,10 @@ nav#secondar-menu a:hover, nav, a:active {
 
 nav#secondar-menu a{
     float:left;
-    padding: .8em 1.5em;
+    padding: 0.9em 1.5em;
     text-decoration: none;
     color: #333;
-    font: bold 0.7em Helvetica;
+    font: bold 0.9em Helvetica;
     letter-spacing: 1px;
 }
 
@@ -126,12 +128,12 @@ section#content-news{
 div#breadcrumb {
     margin-bottom: 20px;
     border-bottom: 1px solid grey;
-    font-size:0.7em;
+    font-size:0.9em;
 }
 
 
 div#company{
-    font-size:0.7em;
+    font-size:0.9em;
     font-weight:bold;
     color:black;
     padding: 10px 5px 0 0;

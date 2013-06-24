@@ -9,6 +9,8 @@ WEBT.singlePage = (function() {
             async: false
         });
 
+        $('#event-date').datepicker({dateFormat: 'yy-mm-dd'});
+
         $('#register-button').click(register);
         $('#login-button').click(login);
         $('#logout-button').click(logout);
@@ -102,12 +104,12 @@ WEBT.singlePage = (function() {
         if (result.error === 'false') {
             var user = createUserFromLoginForm();
             WEBT.localStorage.storeUser(user);
+            resetEventsTable();
+            reloadEvents();
         } else {
             setError(result.msg);
         }
         resetUserLoginForm();
-        resetEventsTable();
-        reloadEvents();
         updateView();
     };
     var reloadEvents = function() {
@@ -154,7 +156,7 @@ WEBT.singlePage = (function() {
     };
 
     var resetUserLoginForm = function() {
-        $('#userName').val('');
+        $('#username').val('');
         $('#password').val('');
     };
     var createUserFromLoginForm = function() {
